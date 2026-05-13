@@ -1,69 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
-    <title> Miguel Cruz</title>
+    <meta charset="UTF-8">
+    <title>Miguel Cruz</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body> 
-    <header class = "topbar">
-        <div class = "Left">
-            <h1> Miguel Cruz </h1>
+<body>
+    <header class="topbar site-header">
+        <div class="Left">
+            <h1>Miguel Cruz</h1>
         </div>
-        <nav class = "Middle">
-            <p> <a href=""> Home </a> </p>
-            <p> <a href="projects/"> Projects </a> </p>
-            <p> <a href="about/"> About </a> </p>
+        <nav class="Middle">
+            <p><a href="">Home</a></p>
+            <p><a href="about/">CV</a></p>
         </nav>
-        <div class = "Right">
-            <a href ="https://github.com/MiguelPacoCruz">
+        <div class="Right">
+            <a href="https://github.com/MiguelPacoCruz" aria-label="GitHub profile">
                 <img src="github-mark/github-mark-white.svg" alt="GitHub Logo" style="width: 50px;">
             </a>
         </div>
     </header>
-    
+
     <div class="container">
-        <aside class="block" style="margin-right: 5%;">
-            <h style="font-size: 1500%;"> 5<span style="color: blue;">.</span> </h>
-            <p style="text-align: right;"> Years of Self-Taught Development</p>
+        <aside class="block hero-stat">
+            <strong>5<span>.</span></strong>
+            <p>Years of self-taught development</p>
         </aside>
         <main>
-            <h class="title">Computer Science undergraduate</h>
-            <div>
+            <section class="intro">
+                <p class="eyebrow">Computer Science undergraduate</p>
+                <h2>Building practical software with a full-stack mindset.</h2>
+                <p>
+                    Licenciatura em Ciências da Computação na Universidade do Minho.
+                    Experiência em projetos web, bases de dados, ferramentas Linux e coordenação técnica no NECC.
+                </p>
+                <a class="button" href="about/">Ver CV completo</a>
+            </section>
+
+            <section>
                 <div class="topbar">
-                    <h>Skills</h>
-                    <img src="skills/code_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg">
+                    <h2>Skills</h2>
+                    <img src="skills/code_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                 </div>
-                
-                <div class = "images">
-                    <img src="skills/Haskell-Dark.svg" alt="Haskell">
+
+                <div class="images">
                     <img src="skills/C.svg" alt="C">
+                    <img src="skills/Haskell-Dark.svg" alt="Haskell">
                     <img src="skills/Python-Dark.svg" alt="Python">
                     <img src="skills/HTML.svg" alt="HTML">
                     <img src="skills/CSS.svg" alt="CSS">
-                    <img src="skills/Lua-Dark.svg" alt="Lua">
                 </div>
-            
-            </div>
-        
-            <div>
+            </section>
+
+            <section>
                 <div class="topbar">
-                    <h>Tools</h>
-                    <img src="skills/build_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg">
+                    <h2>Tools</h2>
+                    <img src="skills/build_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                 </div>
-                
-                <div class = "images">
-                    <img src="skills/VSCode-Dark.svg" alt="Visual Studio Code">                
-                    <img src="skills/Github-Dark.svg" alt="Github">
-                    <img src="skills/Git.svg" alt="Git">
-                    <img src="skills/RobloxStudio.svg" alt="Roblox Studio">
+
+                <div class="images">
                     <img src="skills/Linux-Dark.svg" alt="Linux">
-                    <img src="skills/Mint-Dark.svg" alt="Mint">
+                    <img src="skills/Git.svg" alt="Git">
+                    <img src="skills/Github-Dark.svg" alt="Github">
+                    <img src="skills/VSCode-Dark.svg" alt="Visual Studio Code">
                 </div>
-            </div>
+            </section>
+
+            <section class="highlights">
+                <article>
+                    <span>Projeto</span>
+                    <h3>SNecc Bar</h3>
+                    <p>Plataforma full-stack para gestão de compras, stock e histórico de transações.</p>
+                </article>
+                <article>
+                    <span>Experiência</span>
+                    <h3>Co Diretor de Desenvolvimento</h3>
+                    <p>Coordenação técnica, arquitetura e acompanhamento de projetos internos do NECC.</p>
+                </article>
+            </section>
         </main>
-        
-        
     </div>
 </body>
-
 </html>
