@@ -1,85 +1,285 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
-    <meta charset="UTF-8">
-    <title>Miguel Cruz</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miguel Cruz – Métodos formais, segurança e desenvolvimento full-stack</title>
+<meta name="description" content="Estudante de Ciências da Computação na Universidade do Minho. Métodos formais, segurança de software e sistemas full-stack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f4f8; --ink:#0f1626; --muted:#4f5a70; --line:#cfd5e1; --panel:#e6eaf2;
+  --accent:#2740e0; --accent-ink:#ffffff; --attack:#b3261e; --proof:#1b6b4a;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0d1120; --ink:#e9ecf5; --muted:#a2abc0; --line:#2a3250; --panel:#161c32;
+        --accent:#93a5ff; --accent-ink:#0d1120; --attack:#ff9a90; --proof:#7fdcb0;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.62}
+a{color:var(--accent)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0}
+h2{font-size:1.75rem;font-weight:700;letter-spacing:-.01em;margin-bottom:1.5rem}
+p{margin:0 0 1rem;max-width:62ch}
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+
+/* hero */
+.hero{padding:4.5rem 0 3.5rem;border-top:0}
+.hero h1{font-size:clamp(3.25rem,10vw,7rem);font-weight:800;letter-spacing:-.04em}
+.hero .lead{font-size:1.35rem;line-height:1.45;max-width:40ch;margin:1.5rem 0 2rem;color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:3rem}
+.links a{font-family:var(--display);font-weight:700;text-decoration:none;padding:.65rem 1.1rem;border:2px solid var(--ink);color:var(--ink);border-radius:2px}
+.links a:first-child{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.links a:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+/* attack / proof pair: the memorable element */
+.pair{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink)}
+.pair div{padding:1.5rem}
+.pair div+div{border-left:2px solid var(--ink)}
+.pair h3{font-size:1.25rem;margin-bottom:.6rem}
+.pair .a h3{color:var(--attack)} .pair .p h3{color:var(--proof)}
+.pair p{margin:0;font-size:1rem}
+.pair .tag{display:inline-block;font-family:var(--display);font-weight:700;font-size:.85rem;border:1.5px solid currentColor;padding:0 .45rem;margin-left:.4rem;vertical-align:.1em;border-radius:2px}
+
+/* skills as evidence rows */
+.rows{margin:0;padding:0;list-style:none}
+.rows li{display:grid;grid-template-columns:11rem 1fr 1.2fr;gap:1.5rem;padding:1.25rem 0;border-top:1px solid var(--line)}
+.rows li:first-child{border-top:0;padding-top:0}
+.rows h3{font-size:1.5rem;font-weight:800}
+.stack{font-weight:600;margin:0}
+.rows p{margin:0;color:var(--muted)}
+
+/* projects */
+.feature{border-left:6px solid var(--accent);padding-left:1.5rem;margin-bottom:3rem}
+.feature h3{font-size:2rem;font-weight:800;margin-bottom:.25rem}
+.feature .meta,.proj .meta{color:var(--muted);margin-bottom:1rem}
+.feature ul,.proj ul{margin:0;padding-left:1.1rem;max-width:68ch}
+.feature li,.proj li{margin-bottom:.5rem}
+.proj{margin-bottom:2.25rem}
+.proj h3{font-size:1.25rem;margin-bottom:.15rem}
+.acad{list-style:none;padding:0;margin:0;max-width:68ch}
+.acad li{padding:.75rem 0;border-top:1px solid var(--line)}
+.acad b{font-family:var(--display)}
+.acad i{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0 0;padding:0;list-style:none}
+.chips li{font-size:.9rem;background:var(--panel);padding:.1rem .6rem;border-radius:2px;margin:0}
+
+/* dated lists */
+.dated{margin:0;padding:0;list-style:none}
+.dated li{display:grid;grid-template-columns:11rem 1fr;gap:1.5rem;padding:1.1rem 0;border-top:1px solid var(--line)}
+.dated li:first-child{border-top:0;padding-top:0}
+.dated time{color:var(--muted)}
+.dated h3{font-size:1.2rem;margin-bottom:.2rem}
+.dated p{margin:0}
+
+footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
+
+@media (max-width:720px){
+  .pair{grid-template-columns:1fr}
+  .pair div+div{border-left:0;border-top:2px solid var(--ink)}
+  .rows li,.dated li{grid-template-columns:1fr;gap:.35rem}
+  .hero{padding-top:3rem}
+}
+
+:root{--dot:#b9c1d4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--dot:#2a3250}}
+:root[data-theme="dark"]{--bg:#0d1120;--ink:#e9ecf5;--muted:#a2abc0;--line:#2a3250;--panel:#161c32;--accent:#93a5ff;--accent-ink:#0d1120;--attack:#ff9a90;--proof:#7fdcb0;--dot:#2a3250}
+html{scroll-padding-top:4.5rem}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(var(--dot) 1.2px,transparent 1.6px);background-size:26px 26px;-webkit-mask-image:linear-gradient(#000,transparent 65%);mask-image:linear-gradient(#000,transparent 65%)}
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:1.5rem;height:3.5rem}
+.brand{font-family:var(--display);font-weight:800;color:var(--ink);text-decoration:none;margin-right:auto}
+.navlinks{display:flex;gap:1.25rem}
+.navlinks a{font-family:var(--display);font-weight:500;font-size:.95rem;color:var(--muted);text-decoration:none}
+.navlinks a:hover{color:var(--accent)}
+#tema{font-family:var(--display);font-weight:700;font-size:.85rem;background:none;color:var(--ink);border:1.5px solid var(--ink);padding:.3rem .7rem;border-radius:2px;cursor:pointer}
+#tema:hover{background:var(--ink);color:var(--bg)}
+#tema:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h2::after{content:"";display:block;width:3rem;height:4px;background:var(--accent);margin-top:.6rem}
+.cap{font-family:var(--display);font-weight:700;font-size:.9rem;margin:1rem 0 .35rem!important;color:var(--muted)}
+.prop{margin:0;padding:.8rem 1rem;background:var(--panel);border-left:3px solid var(--proof);font:.88rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-x:auto}
+.rows li:nth-child(1) h3{color:var(--proof)}
+.rows li:nth-child(2) h3{color:var(--attack)}
+.rows li:nth-child(3) h3{color:var(--accent)}
+.rows .chips{margin:0}
+.feature{background:var(--panel);padding:1.75rem 1.75rem 1.75rem 1.5rem}
+.feature .chips li{background:var(--bg)}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}}
+  .hero h1,.hero .lead,.hero .links,.hero .pair{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .hero .lead{animation-delay:.1s}.hero .links{animation-delay:.2s}.hero .pair{animation-delay:.32s}
+}
+@media (max-width:720px){.navlinks{display:none}}
+</style>
 </head>
 <body>
-    <header class="topbar site-header">
-        <div class="Left">
-            <h1>Miguel Cruz</h1>
-        </div>
-        <nav class="Middle">
-            <p><a href="">Home</a></p>
-            <p><a href="about/">CV</a></p>
-        </nav>
-        <div class="Right">
-            <a href="https://github.com/MiguelPacoCruz" aria-label="GitHub profile">
-                <img src="github-mark/github-mark-white.svg" alt="GitHub Logo" style="width: 50px;">
-            </a>
-        </div>
-    </header>
+<nav class="top" aria-label="Secções"><div class="wrap bar"><a class="brand" href="#">Miguel Cruz</a><span class="navlinks"><a href="#competencias">Competências</a><a href="#projetos">Projetos</a><a href="#experiencia">Experiência</a><a href="#formacao">Formação</a></span><button id="tema" type="button" aria-label="Alternar entre tema claro e escuro">Tema</button></div></nav>
+<main class="wrap">
 
-    <div class="container">
-        <aside class="block hero-stat">
-            <strong>5<span>.</span></strong>
-            <p>Years of self-taught development</p>
-        </aside>
-        <main>
-            <section class="intro">
-                <p class="eyebrow">Computer Science undergraduate</p>
-                <h2>Building practical software with a full-stack mindset.</h2>
-                <p>
-                    Licenciatura em Ciências da Computação na Universidade do Minho.
-                    Experiência em projetos web, bases de dados, ferramentas Linux e coordenação técnica no NECC.
-                </p>
-                <a class="button" href="about/">Ver CV completo</a>
-            </section>
-
-            <section>
-                <div class="topbar">
-                    <h2>Skills</h2>
-                    <img src="skills/code_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                </div>
-
-                <div class="images">
-                    <img src="skills/C.svg" alt="C">
-                    <img src="skills/Haskell-Dark.svg" alt="Haskell">
-                    <img src="skills/Python-Dark.svg" alt="Python">
-                    <img src="skills/HTML.svg" alt="HTML">
-                    <img src="skills/CSS.svg" alt="CSS">
-                </div>
-            </section>
-
-            <section>
-                <div class="topbar">
-                    <h2>Tools</h2>
-                    <img src="skills/build_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                </div>
-
-                <div class="images">
-                    <img src="skills/Linux-Dark.svg" alt="Linux">
-                    <img src="skills/Git.svg" alt="Git">
-                    <img src="skills/Github-Dark.svg" alt="Github">
-                    <img src="skills/VSCode-Dark.svg" alt="Visual Studio Code">
-                </div>
-            </section>
-
-            <section class="highlights">
-                <article>
-                    <span>Projeto</span>
-                    <h3>SNecc Bar</h3>
-                    <p>Plataforma full-stack para gestão de compras, stock e histórico de transações.</p>
-                </article>
-                <article>
-                    <span>Experiência</span>
-                    <h3>Co Diretor de Desenvolvimento</h3>
-                    <p>Coordenação técnica, arquitetura e acompanhamento de projetos internos do NECC.</p>
-                </article>
-            </section>
-        </main>
+<header class="hero">
+  <h1>Miguel Cruz</h1>
+  <p class="lead">Estudo métodos formais e segurança de software, e construo sistemas full-stack.</p>
+  <div class="links">
+    <!-- Substitui pelos teus links reais -->
+    <a href="https://github.com/O-TEU-UTILIZADOR">GitHub</a>
+    <a href="https://www.linkedin.com/in/O-TEU-PERFIL">LinkedIn</a>
+    <a href="mailto:o-teu-email@exemplo.pt">Email</a>
+  </div>
+  <div class="pair" role="group" aria-label="Do ataque à prova">
+    <div class="a">
+      <h3>Do lado do atacante</h3>
+      <p>No clube de Capture the Flag da Universidade do Minho explorei escalada de privilégios, versões de software desatualizadas e vulnerabilidades de WordPress.</p>
     </div>
+    <div class="p">
+      <h3>Do lado da prova <span class="tag">em curso</span></h3>
+      <p>No PitMate estou a modelar em SMT as regras de autorização para verificar que ninguém convida para um role acima do seu.</p>
+      <p class="cap">Propriedade a verificar</p>
+      <pre class="prop" aria-label="Propriedade: só se convida para roles de posição igual ou inferior"><code>∀ u, r.  convida(u, r)  ⟹  posição(r) ≤ posição(u)</code></pre>
+    </div>
+  </div>
+</header>
+
+<section id="competencias">
+  <h2>O que sei fazer, e onde o usei</h2>
+  <ul class="rows">
+    <li>
+      <h3>Verificar</h3>
+      <p class="stack">Haskell, pySMT, OR-Tools CP-SAT, SCIP, cvxpy</p>
+      <p>Provas point-free e derivação de programas em Cálculo de Programas; autómato celular modelado como sistema de transição em SMT; horários e Sudoku resolvidos por restrições.</p>
+    </li>
+    <li>
+      <h3>Proteger</h3>
+      <p class="stack">CTF, JWT, RBAC, Row Level Security, menor privilégio, isolamento multi-tenant</p>
+      <p>Autorização por pista e role de base de dados sem superuser no PitMate; Row Level Security no SNecc Bar; segurança ofensiva no clube de CTF.</p>
+    </li>
+    <li>
+      <h3>Construir</h3>
+      <p class="stack">ASP.NET Core, Entity Framework Core, React, TypeScript, Next.js, PostgreSQL, PostGIS, Supabase, Docker, .NET Aspire</p>
+      <p>PitMate, uma plataforma SaaS API-first e multi-tenant, e o SNecc Bar para gestão de vendas e stock.</p>
+    </li>
+    <li>
+      <h3>Usar IA com critério</h3>
+      <p class="stack">IA generativa, API de LLM, rating Elo</p>
+      <p>Código gerado com IA e validado com testes e raciocínio formal. No PitMate, rating Elo multidimensional para pilotos e coaching com LLM em conceção.</p>
+    </li>
+    <li>
+      <h3>Fundamentos</h3>
+      <p class="stack">Teoria de números (RSA, primalidade, PARI/GP), redes, sistemas operativos, algoritmos e complexidade</p>
+      <p>Unidades curriculares da licenciatura na Universidade do Minho.</p>
+    </li>
+  </ul>
+</section>
+
+<section id="projetos">
+  <h2>Projetos</h2>
+
+  <article class="feature">
+    <h3>PitMate</h3>
+    <p class="meta">Ecossistema SaaS para karting · jun. 2026 – presente</p>
+    <ul>
+      <li>API-first e multi-tenant, com ASP.NET Core, React e TypeScript. Base de dados em PostgreSQL/PostGIS, modelada à mão e mapeada com Entity Framework Core.</li>
+      <li>Autenticação com JWT e permissões granulares: roles por empresa, âmbito por pista e autorização verificada na base de dados a cada pedido. Convites por token.</li>
+      <li>Role de base de dados sem privilégios de superuser, segredos fora do repositório e reverse proxy com Caddy.</li>
+      <li>Rating Elo multidimensional (ritmo, racecraft e consistência) e uma arquitetura de coaching com IA em conceção.</li>
+      <li>Verificação da lógica de autorização em SMT (pySMT), com testes baseados em propriedades (FsCheck) sobre o código C#. Em curso.</li>
+    </ul>
+    <ul class="chips" aria-label="Tecnologias">
+      <li>ASP.NET Core</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>PostGIS</li><li>Docker</li><li>.NET Aspire</li><li>pySMT</li>
+    </ul>
+  </article>
+
+  <article class="proj">
+    <h3>SNecc Bar</h3>
+    <p class="meta">Gestão de compras e stock de um snack bar estudantil</p>
+    <ul>
+      <li>Vendas, utilizadores, stock e histórico de transações, com dashboard administrativo para produtos, finanças e inventário.</li>
+      <li>Supabase com autenticação e Row Level Security para restringir o acesso a dados por utilizador. Interface em Next.js, TypeScript e Tailwind CSS.</li>
+    </ul>
+  </article>
+
+  <h3 style="font-size:1.25rem;margin:2.5rem 0 .75rem">Trabalhos académicos</h3>
+  <ul class="acad">
+    <li><b>Game of Life modificado.</b> Sistema de transição de primeira ordem em SMT (pySMT), com semântica síncrona e análise experimental de desempenho. <i>Lógica Computacional</i></li>
+    <li><b>Sudoku genérico.</b> Sudoku n²×n² como problema de satisfação de restrições com OR-Tools CP-SAT, com geração de pistas e validação. <i>Lógica Computacional</i></li>
+    <li><b>Horário escolar.</b> Programação inteira com OR-Tools e SCIP, visualização por turma e professor. <i>Lógica Computacional</i></li>
+    <li><b>Closest Vector Problem.</b> Programação cónica com cvxpy e Clarabel, a partir de otimização de portfólios. <i>Lógica Computacional</i></li>
+    <li><b>LiveWave.</b> Plataforma de gestão de festivais de música: modelação relacional, views e interrogações SQL, relatório em LaTeX. <i>Bases de Dados</i></li>
+  </ul>
+</section>
+
+<section id="experiencia">
+  <h2>Experiência</h2>
+  <ul class="dated">
+    <li>
+      <time>set. 2025 – out. 2026</time>
+      <div>
+        <h3>Co Diretor do Departamento de Desenvolvimento</h3>
+        <p>Núcleo de Estudantes de Ciências da Computação, Braga. Coordenação da equipa técnica, apoio nas decisões de arquitetura e planeamento dos projetos internos.</p>
+      </div>
+    </li>
+    <li>
+      <time>2025/26</time>
+      <div>
+        <h3>Clube de Capture the Flag</h3>
+        <p>Universidade do Minho. Reconhecimento e enumeração, exploração de vulnerabilidades em WordPress e escalada de privilégios.</p>
+      </div>
+    </li>
+    <li>
+      <time>set. 2024 – set. 2025</time>
+      <div>
+        <h3>Monitor de voluntários</h3>
+        <p>InPóvoa, Póvoa de Varzim. Coordenação de equipas de voluntários num projeto de inclusão social para pessoas com mobilidade reduzida.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section id="formacao">
+  <h2>Formação</h2>
+  <ul class="dated">
+    <li>
+      <time>set. 2024 – presente</time>
+      <div>
+        <h3>Licenciatura em Ciências da Computação</h3>
+        <p>Universidade do Minho, Braga. Prática regular de revisão e prova de código em Haskell: leis de combinadores em estilo point-free, inferência de tipos a partir de propriedades grátis e transformação algébrica de programas para ganhar eficiência sem perder correção.</p>
+      </div>
+    </li>
+    <li>
+      <time>Línguas</time>
+      <div>
+        <h3>Português e inglês</h3>
+        <p>Português, língua materna. Inglês, nível C2 em todas as competências.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+</main>
+<footer>
+  <div class="wrap">Miguel Cruz · Braga, Portugal</div>
+</footer>
+<script>
+(function(){
+  var r=document.documentElement,k="tema";
+  try{var s=localStorage.getItem(k);if(s)r.dataset.theme=s}catch(e){}
+  document.getElementById("tema").addEventListener("click",function(){
+    var dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+    var n=dark?"light":"dark";r.dataset.theme=n;
+    try{localStorage.setItem(k,n)}catch(e){}
+  });
+  document.querySelectorAll(".stack").forEach(function(p){
+    var ul=document.createElement("ul");ul.className="chips";
+    p.textContent.split(/,\s*(?![^()]*\))/).forEach(function(t){var li=document.createElement("li");li.textContent=t;ul.appendChild(li)});
+    p.replaceWith(ul);
+  });
+})();
+</script>
 </body>
 </html>
