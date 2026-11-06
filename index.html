@@ -3,130 +3,175 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Miguel Cruz – Métodos formais, segurança e desenvolvimento full-stack</title>
 <meta name="description" content="Estudante de Ciências da Computação na Universidade do Minho. Métodos formais, segurança de software e sistemas full-stack.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:title" content="Miguel Cruz – Métodos formais, segurança e desenvolvimento full-stack">
+<meta property="og:description" content="Estudante de Ciências da Computação na Universidade do Minho. Métodos formais, segurança de software e sistemas full-stack.">
+<meta property="og:url" content="https://miguelpacocruz.github.io/">
+<meta property="og:image" content="https://miguelpacocruz.github.io/preview.svg">
+<meta property="og:image:type" content="image/svg+xml">
+<meta property="og:image:alt" content="Miguel Cruz — métodos formais, segurança e desenvolvimento full-stack">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Miguel Cruz – Métodos formais, segurança e desenvolvimento full-stack">
+<meta name="twitter:description" content="Estudante de Ciências da Computação na Universidade do Minho. Métodos formais, segurança de software e sistemas full-stack.">
+<meta name="twitter:image" content="https://miguelpacocruz.github.io/preview.svg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f2f4f8; --ink:#0f1626; --muted:#4f5a70; --line:#cfd5e1; --panel:#e6eaf2;
-  --accent:#2740e0; --accent-ink:#ffffff; --attack:#b3261e; --proof:#1b6b4a;
+  color-scheme:light;
+  --bg:#f2f4f8;--ink:#0f1626;--muted:#4f5a70;--line:#cfd5e1;--panel:#e6eaf2;
+  --accent:#2740e0;--accent-ink:#fff;--attack:#a5221b;--proof:#176342;--dot:#b9c1d4;
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --measure:68rem;--nav-height:4rem;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#0d1120; --ink:#e9ecf5; --muted:#a2abc0; --line:#2a3250; --panel:#161c32;
-        --accent:#93a5ff; --accent-ink:#0d1120; --attack:#ff9a90; --proof:#7fdcb0;}
-}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;--bg:#0d1120;--ink:#e9ecf5;--muted:#b1bad0;--line:#343d5d;--panel:#161c32;
+  --accent:#aab8ff;--accent-ink:#0d1120;--attack:#ff9a90;--proof:#7fdcb0;--dot:#2a3250;
+}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0d1120;--ink:#e9ecf5;--muted:#b1bad0;--line:#343d5d;--panel:#161c32;--accent:#aab8ff;--accent-ink:#0d1120;--attack:#ff9a90;--proof:#7fdcb0;--dot:#2a3250}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.62}
-a{color:var(--accent)}
-a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
-h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0}
-h2{font-size:1.75rem;font-weight:700;letter-spacing:-.01em;margin-bottom:1.5rem}
-p{margin:0 0 1rem;max-width:62ch}
-section{padding:3.5rem 0;border-top:1px solid var(--line)}
-
-/* hero */
-.hero{padding:4.5rem 0 3.5rem;border-top:0}
-.hero h1{font-size:clamp(3.25rem,10vw,7rem);font-weight:800;letter-spacing:-.04em}
-.hero .lead{font-size:1.35rem;line-height:1.45;max-width:40ch;margin:1.5rem 0 2rem;color:var(--ink)}
-.links{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:3rem}
-.links a{font-family:var(--display);font-weight:700;text-decoration:none;padding:.65rem 1.1rem;border:2px solid var(--ink);color:var(--ink);border-radius:2px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-height) + 1rem)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.65}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(var(--dot) 1.15px,transparent 1.55px);background-size:27px 27px;-webkit-mask-image:linear-gradient(#000,transparent 82%);mask-image:linear-gradient(#000,transparent 82%)}
+a{color:var(--accent);text-underline-offset:.18em}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.wrap{width:min(100% - 3rem,var(--measure));margin-inline:auto}
+h1,h2,h3{margin:0;font-family:var(--display);line-height:1.12}
+h1{font-size:clamp(3.5rem,9vw,7.25rem);font-weight:800;letter-spacing:-.055em}
+h2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:700;letter-spacing:-.035em;margin-bottom:2rem}
+h2::after{content:"";display:block;width:3.25rem;height:4px;background:var(--accent);margin-top:.8rem}
+h3{font-size:1.25rem}
+p{max-width:66ch;margin:0 0 1rem}
+section{padding:clamp(3.5rem,7vw,6rem) 0;border-top:1px solid var(--line);scroll-margin-top:calc(var(--nav-height) + 1rem)}
+.skip-link{position:fixed;left:1rem;top:.75rem;z-index:10;transform:translateY(-180%);padding:.65rem 1rem;background:var(--ink);color:var(--bg);font-family:var(--display);font-weight:700}
+.skip-link:focus{transform:translateY(0)}
+/* Navegação fixa, com linha de ligações deslizável em ecrãs estreitos. */
+.top{position:sticky;top:0;z-index:5;background:var(--bg);background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{min-height:var(--nav-height);display:flex;align-items:center;gap:clamp(.65rem,2vw,1.5rem)}
+.brand{flex:none;margin-right:auto;color:var(--ink);font-family:var(--display);font-weight:800;text-decoration:none}
+.navlinks{display:flex;align-items:center;gap:clamp(.25rem,1.5vw,1rem);min-width:0;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin}
+.navlinks a{flex:none;padding:.55rem .35rem;color:var(--muted);font-family:var(--display);font-size:.92rem;font-weight:600;text-decoration:none;border-bottom:2px solid transparent}
+.navlinks a:hover,.navlinks a[aria-current="location"]{color:var(--ink);border-bottom-color:var(--accent)}
+#tema{flex:none;padding:.48rem .7rem;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:700 .85rem var(--display);cursor:pointer}
+#tema:hover{background:var(--ink);color:var(--bg)}
+/* Hero e par atacante/prova. */
+.hero{padding:clamp(4rem,9vw,7.5rem) 0 clamp(3.5rem,7vw,5.75rem);border:0}
+.hero .lead{max-width:40ch;margin:1.2rem 0 2rem;font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.4;color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:.7rem;margin:0 0 clamp(2.5rem,6vw,4rem)}
+.links a{display:inline-flex;align-items:center;min-height:2.9rem;padding:.55rem 1rem;border:1.5px solid var(--ink);color:var(--ink);font-family:var(--display);font-weight:700;text-decoration:none;transition:background-color .16s ease,color .16s ease,border-color .16s ease}
 .links a:first-child{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .links a:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
-
-/* attack / proof pair: the memorable element */
-.pair{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink)}
-.pair div{padding:1.5rem}
-.pair div+div{border-left:2px solid var(--ink)}
-.pair h3{font-size:1.25rem;margin-bottom:.6rem}
-.pair .a h3{color:var(--attack)} .pair .p h3{color:var(--proof)}
-.pair p{margin:0;font-size:1rem}
-.pair .tag{display:inline-block;font-family:var(--display);font-weight:700;font-size:.85rem;border:1.5px solid currentColor;padding:0 .45rem;margin-left:.4rem;vertical-align:.1em;border-radius:2px}
-
-/* skills as evidence rows */
+.pair{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--ink);background:var(--bg)}
+.pair>div{min-width:0;padding:clamp(1.25rem,3vw,2rem)}
+.pair>div+div{border-left:1.5px solid var(--ink)}
+.pair h3{margin-bottom:.75rem;font-size:clamp(1.25rem,2.5vw,1.55rem)}
+.pair .a h3{color:var(--attack)}.pair .p h3{color:var(--proof)}
+.pair p{margin:0;font-size:1.04rem}
+.pair .tag{display:inline-block;margin-left:.35rem;padding:.12rem .45rem;border:1px solid currentColor;font-size:.78rem;vertical-align:.12em}
+.cap{margin:1rem 0 .35rem!important;color:var(--muted);font:700 .9rem var(--display)}
+.prop{max-width:100%;margin:0;padding:.85rem 1rem;overflow-x:auto;background:var(--panel);border-left:3px solid var(--proof);font:.86rem/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}
+/* Competências: linhas de evidência, não cartões. */
 .rows{margin:0;padding:0;list-style:none}
-.rows li{display:grid;grid-template-columns:11rem 1fr 1.2fr;gap:1.5rem;padding:1.25rem 0;border-top:1px solid var(--line)}
-.rows li:first-child{border-top:0;padding-top:0}
-.rows h3{font-size:1.5rem;font-weight:800}
-.stack{font-weight:600;margin:0}
+.rows li{display:grid;grid-template-columns:minmax(9rem,.78fr) minmax(12rem,1.25fr) minmax(16rem,1.8fr);gap:clamp(1rem,3vw,2rem);padding:1.4rem 0;border-top:1px solid var(--line)}
+.rows li:first-child{padding-top:0;border-top:0}
+.rows h3{font-size:clamp(1.3rem,2.5vw,1.65rem);font-weight:800}
+.rows li:nth-child(1) h3{color:var(--proof)}.rows li:nth-child(2) h3{color:var(--attack)}.rows li:nth-child(3) h3{color:var(--accent)}
 .rows p{margin:0;color:var(--muted)}
-
-/* projects */
-.feature{border-left:6px solid var(--accent);padding-left:1.5rem;margin-bottom:3rem}
-.feature h3{font-size:2rem;font-weight:800;margin-bottom:.25rem}
-.feature .meta,.proj .meta{color:var(--muted);margin-bottom:1rem}
-.feature ul,.proj ul{margin:0;padding-left:1.1rem;max-width:68ch}
-.feature li,.proj li{margin-bottom:.5rem}
-.proj{margin-bottom:2.25rem}
-.proj h3{font-size:1.25rem;margin-bottom:.15rem}
-.acad{list-style:none;padding:0;margin:0;max-width:68ch}
-.acad li{padding:.75rem 0;border-top:1px solid var(--line)}
-.acad b{font-family:var(--display)}
-.acad i{color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0 0;padding:0;list-style:none}
-.chips li{font-size:.9rem;background:var(--panel);padding:.1rem .6rem;border-radius:2px;margin:0}
-
-/* dated lists */
+.chips{display:flex;flex-wrap:wrap;align-content:start;gap:.42rem;margin:0;padding:0;list-style:none}
+.chips li{max-width:100%;padding:.17rem .58rem;background:var(--panel);color:var(--ink);font-size:.88rem;line-height:1.5;overflow-wrap:anywhere}
+/* Projetos e trabalhos académicos. */
+.feature{margin-bottom:3.25rem;padding:clamp(1.25rem,3.5vw,2.25rem);border-left:5px solid var(--accent);background:var(--panel);transition:border-color .18s ease}
+.feature:hover{border-left-color:var(--proof)}
+.feature h3{margin-bottom:.35rem;font-size:clamp(1.7rem,4vw,2.25rem);font-weight:800}
+.feature .meta,.proj .meta{margin-bottom:1rem;color:var(--muted)}
+.feature ul,.proj ul{max-width:70ch;margin:0;padding-left:1.25rem}
+.feature li,.proj li{padding-left:.15rem;margin-bottom:.55rem}
+.feature .chips{margin-top:1.2rem}.feature .chips li{background:var(--bg)}
+.proj{padding:0 0 2.25rem;margin-bottom:2.25rem;border-bottom:1px solid var(--line)}
+.proj h3{margin-bottom:.2rem;font-size:1.4rem}
+.acad{max-width:72ch;margin:0;padding:0;list-style:none}
+.acad li{padding:.85rem 0;border-top:1px solid var(--line)}
+.acad b{font-family:var(--display)}.acad i{color:var(--muted)}
+.subheading{margin:3rem 0 .85rem;font-size:1.35rem}
+/* Percurso: data e evidência em colunas com adaptação progressiva. */
 .dated{margin:0;padding:0;list-style:none}
-.dated li{display:grid;grid-template-columns:11rem 1fr;gap:1.5rem;padding:1.1rem 0;border-top:1px solid var(--line)}
-.dated li:first-child{border-top:0;padding-top:0}
-.dated time{color:var(--muted)}
-.dated h3{font-size:1.2rem;margin-bottom:.2rem}
+.dated li{display:grid;grid-template-columns:minmax(9rem,.75fr) minmax(0,2fr);gap:clamp(1rem,3vw,2rem);padding:1.3rem 0;border-top:1px solid var(--line)}
+.dated li:first-child{padding-top:0;border-top:0}
+.dated time{color:var(--muted);font-variant-numeric:tabular-nums}
+.dated h3{margin-bottom:.35rem;font-size:1.25rem}
 .dated p{margin:0}
-
-footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
-
-@media (max-width:720px){
-  .pair{grid-template-columns:1fr}
-  .pair div+div{border-left:0;border-top:2px solid var(--ink)}
-  .rows li,.dated li{grid-template-columns:1fr;gap:.35rem}
-  .hero{padding-top:3rem}
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:1rem}
+@media(max-width:900px){.rows li{grid-template-columns:minmax(8rem,.7fr) minmax(0,1.3fr)}.rows li>p:last-child{grid-column:2}.rows .chips{grid-column:2}}
+@media(max-width:640px){
+  :root{--nav-height:3.6rem}
+  .wrap{width:min(100% - 2rem,var(--measure))}
+  .bar{gap:.65rem}.brand{font-size:.95rem}
+  .navlinks{gap:.55rem}.navlinks a{font-size:.84rem;padding:.55rem .22rem}
+  #tema{padding:.42rem .52rem;font-size:.78rem}
+  .hero{padding-top:3.6rem}
+  .pair{grid-template-columns:1fr}.pair>div+div{border-top:1.5px solid var(--ink);border-left:0}
+  .rows li{grid-template-columns:1fr;gap:.45rem}.rows li>p:last-child,.rows .chips{grid-column:auto}
+  .dated li{grid-template-columns:1fr;gap:.35rem}
+  .prop{font-size:.78rem}
 }
-
-:root{--dot:#b9c1d4}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--dot:#2a3250}}
-:root[data-theme="dark"]{--bg:#0d1120;--ink:#e9ecf5;--muted:#a2abc0;--line:#2a3250;--panel:#161c32;--accent:#93a5ff;--accent-ink:#0d1120;--attack:#ff9a90;--proof:#7fdcb0;--dot:#2a3250}
-html{scroll-padding-top:4.5rem}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(var(--dot) 1.2px,transparent 1.6px);background-size:26px 26px;-webkit-mask-image:linear-gradient(#000,transparent 65%);mask-image:linear-gradient(#000,transparent 65%)}
-.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;gap:1.5rem;height:3.5rem}
-.brand{font-family:var(--display);font-weight:800;color:var(--ink);text-decoration:none;margin-right:auto}
-.navlinks{display:flex;gap:1.25rem}
-.navlinks a{font-family:var(--display);font-weight:500;font-size:.95rem;color:var(--muted);text-decoration:none}
-.navlinks a:hover{color:var(--accent)}
-#tema{font-family:var(--display);font-weight:700;font-size:.85rem;background:none;color:var(--ink);border:1.5px solid var(--ink);padding:.3rem .7rem;border-radius:2px;cursor:pointer}
-#tema:hover{background:var(--ink);color:var(--bg)}
-#tema:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-h2::after{content:"";display:block;width:3rem;height:4px;background:var(--accent);margin-top:.6rem}
-.cap{font-family:var(--display);font-weight:700;font-size:.9rem;margin:1rem 0 .35rem!important;color:var(--muted)}
-.prop{margin:0;padding:.8rem 1rem;background:var(--panel);border-left:3px solid var(--proof);font:.88rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-x:auto}
-.rows li:nth-child(1) h3{color:var(--proof)}
-.rows li:nth-child(2) h3{color:var(--attack)}
-.rows li:nth-child(3) h3{color:var(--accent)}
-.rows .chips{margin:0}
-.feature{background:var(--panel);padding:1.75rem 1.75rem 1.75rem 1.5rem}
-.feature .chips li{background:var(--bg)}
-@media (prefers-reduced-motion:no-preference){
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}}
-  .hero h1,.hero .lead,.hero .links,.hero .pair{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-  .hero .lead{animation-delay:.1s}.hero .links{animation-delay:.2s}.hero .pair{animation-delay:.32s}
+@media(max-width:370px){.brand{font-size:.86rem}.navlinks{gap:.28rem}.navlinks a{font-size:.78rem}.bar{gap:.45rem}}
+@media(prefers-reduced-motion:no-preference){
+  @keyframes hero-entrance{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .hero h1,.hero .lead,.hero .links,.hero .pair{animation:hero-entrance .65s cubic-bezier(.2,.7,.2,1) both}
+  .hero .lead{animation-delay:.08s}.hero .links{animation-delay:.16s}.hero .pair{animation-delay:.24s}
 }
-@media (max-width:720px){.navlinks{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{
+  :root,:root[data-theme="dark"]{color-scheme:light;--bg:#fff;--ink:#111;--muted:#333;--line:#999;--panel:#fff;--accent:#111;--accent-ink:#fff;--attack:#111;--proof:#111;--dot:transparent}
+  @page{margin:1.6cm}
+  html,body{background:#fff!important;color:#111!important;font:10.5pt/1.45 Georgia,"Times New Roman",serif}
+  body::before,.top,.skip-link,#tema{display:none!important}
+  .wrap{width:100%;max-width:none;padding:0}
+  h1,h2,h3,.brand{color:#111!important;font-family:Arial,Helvetica,sans-serif}
+  h1{font-size:30pt}h2{font-size:17pt;margin-bottom:12pt}h2::after{display:none}
+  section{padding:18pt 0;border-color:#aaa;break-inside:auto}
+  .hero{padding:0 0 18pt}.hero .lead{font-size:13pt;margin:8pt 0 12pt}
+  .links{gap:8pt;margin-bottom:14pt}.links a{min-height:0;padding:3pt 6pt;color:#111!important;background:#fff!important;border:1px solid #777!important}
+  .pair,.feature,.proj,.acad li,.dated li,.rows li{break-inside:avoid;page-break-inside:avoid}
+  .pair{background:#fff;border-color:#555}.pair>div{padding:10pt}.pair>div+div{border-color:#555}
+  .pair h3,.rows h3{color:#111!important}
+  .prop,.feature,.feature .chips li,.chips li{background:#fff!important;color:#111!important}
+  .prop{border-color:#555;overflow-wrap:anywhere;white-space:pre-wrap}
+  .feature{padding:10pt;border:1px solid #777;border-left:4px solid #111}
+  .feature li,.proj li{margin-bottom:3pt}
+  .rows li{padding:8pt 0;gap:8pt;grid-template-columns:22% 30% 1fr}
+  .dated li{padding:8pt 0;gap:10pt;grid-template-columns:22% 1fr}
+  .chips{gap:3pt}.chips li{padding:1pt 4pt;border:1px solid #bbb;font-size:8.5pt}
+  .subheading{margin:16pt 0 6pt}.proj{padding-bottom:10pt;margin-bottom:10pt}
+  footer{padding:10pt 0;border-color:#aaa}
+  a,a:visited{color:#111!important;text-decoration:none}
+  a::after{content:none!important}
+}
 </style>
 </head>
 <body>
-<nav class="top" aria-label="Secções"><div class="wrap bar"><a class="brand" href="#">Miguel Cruz</a><span class="navlinks"><a href="#competencias">Competências</a><a href="#projetos">Projetos</a><a href="#experiencia">Experiência</a><a href="#formacao">Formação</a></span><button id="tema" type="button" aria-label="Alternar entre tema claro e escuro">Tema</button></div></nav>
-<main class="wrap">
-
-<header class="hero">
+<a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+<nav class="top" aria-label="Secções">
+  <div class="wrap bar">
+    <a class="brand" href="#inicio">Miguel Cruz</a>
+    <div class="navlinks">
+      <a href="#competencias">Competências</a><a href="#projetos">Projetos</a><a href="#experiencia">Experiência</a><a href="#formacao">Formação</a>
+    </div>
+    <button id="tema" type="button" aria-label="Alternar entre tema claro e escuro">Tema</button>
+  </div>
+</nav>
+<main class="wrap" id="conteudo">
+<header class="hero" id="inicio">
   <h1>Miguel Cruz</h1>
   <p class="lead">Estudo métodos formais e segurança de software, e construo sistemas full-stack.</p>
-  <div class="links">
+  <div class="links" aria-label="Contactos e perfis">
     <!-- Substitui pelos teus links reais -->
     <a href="https://github.com/O-TEU-UTILIZADOR">GitHub</a>
     <a href="https://www.linkedin.com/in/O-TEU-PERFIL">LinkedIn</a>
@@ -145,41 +190,18 @@ h2::after{content:"";display:block;width:3rem;height:4px;background:var(--accent
     </div>
   </div>
 </header>
-
 <section id="competencias">
   <h2>O que sei fazer, e onde o usei</h2>
   <ul class="rows">
-    <li>
-      <h3>Verificar</h3>
-      <p class="stack">Haskell, pySMT, OR-Tools CP-SAT, SCIP, cvxpy</p>
-      <p>Provas point-free e derivação de programas em Cálculo de Programas; autómato celular modelado como sistema de transição em SMT; horários e Sudoku resolvidos por restrições.</p>
-    </li>
-    <li>
-      <h3>Proteger</h3>
-      <p class="stack">CTF, JWT, RBAC, Row Level Security, menor privilégio, isolamento multi-tenant</p>
-      <p>Autorização por pista e role de base de dados sem superuser no PitMate; Row Level Security no SNecc Bar; segurança ofensiva no clube de CTF.</p>
-    </li>
-    <li>
-      <h3>Construir</h3>
-      <p class="stack">ASP.NET Core, Entity Framework Core, React, TypeScript, Next.js, PostgreSQL, PostGIS, Supabase, Docker, .NET Aspire</p>
-      <p>PitMate, uma plataforma SaaS API-first e multi-tenant, e o SNecc Bar para gestão de vendas e stock.</p>
-    </li>
-    <li>
-      <h3>Usar IA com critério</h3>
-      <p class="stack">IA generativa, API de LLM, rating Elo</p>
-      <p>Código gerado com IA e validado com testes e raciocínio formal. No PitMate, rating Elo multidimensional para pilotos e coaching com LLM em conceção.</p>
-    </li>
-    <li>
-      <h3>Fundamentos</h3>
-      <p class="stack">Teoria de números (RSA, primalidade, PARI/GP), redes, sistemas operativos, algoritmos e complexidade</p>
-      <p>Unidades curriculares da licenciatura na Universidade do Minho.</p>
-    </li>
+    <li><h3>Verificar</h3><p class="stack">Haskell, pySMT, OR-Tools CP-SAT, SCIP, cvxpy</p><p>Provas point-free e derivação de programas em Cálculo de Programas; autómato celular modelado como sistema de transição em SMT; horários e Sudoku resolvidos por restrições.</p></li>
+    <li><h3>Proteger</h3><p class="stack">CTF, JWT, RBAC, Row Level Security, menor privilégio, isolamento multi-tenant</p><p>Autorização por pista e role de base de dados sem superuser no PitMate; Row Level Security no SNecc Bar; segurança ofensiva no clube de CTF.</p></li>
+    <li><h3>Construir</h3><p class="stack">ASP.NET Core, Entity Framework Core, React, TypeScript, Next.js, PostgreSQL, PostGIS, Supabase, Docker, .NET Aspire</p><p>PitMate, uma plataforma SaaS API-first e multi-tenant, e o SNecc Bar para gestão de vendas e stock.</p></li>
+    <li><h3>Usar IA com critério</h3><p class="stack">IA generativa, API de LLM, rating Elo</p><p>Código gerado com IA e validado com testes e raciocínio formal. No PitMate, rating Elo multidimensional para pilotos e coaching com LLM em conceção.</p></li>
+    <li><h3>Fundamentos</h3><p class="stack">Teoria de números (RSA, primalidade, PARI/GP), redes, sistemas operativos, algoritmos e complexidade</p><p>Unidades curriculares da licenciatura na Universidade do Minho.</p></li>
   </ul>
 </section>
-
 <section id="projetos">
   <h2>Projetos</h2>
-
   <article class="feature">
     <h3>PitMate</h3>
     <p class="meta">Ecossistema SaaS para karting · jun. 2026 – presente</p>
@@ -190,21 +212,14 @@ h2::after{content:"";display:block;width:3rem;height:4px;background:var(--accent
       <li>Rating Elo multidimensional (ritmo, racecraft e consistência) e uma arquitetura de coaching com IA em conceção.</li>
       <li>Verificação da lógica de autorização em SMT (pySMT), com testes baseados em propriedades (FsCheck) sobre o código C#. Em curso.</li>
     </ul>
-    <ul class="chips" aria-label="Tecnologias">
-      <li>ASP.NET Core</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>PostGIS</li><li>Docker</li><li>.NET Aspire</li><li>pySMT</li>
-    </ul>
+    <ul class="chips" aria-label="Tecnologias"><li>ASP.NET Core</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>PostGIS</li><li>Docker</li><li>.NET Aspire</li><li>pySMT</li></ul>
   </article>
-
   <article class="proj">
     <h3>SNecc Bar</h3>
     <p class="meta">Gestão de compras e stock de um snack bar estudantil</p>
-    <ul>
-      <li>Vendas, utilizadores, stock e histórico de transações, com dashboard administrativo para produtos, finanças e inventário.</li>
-      <li>Supabase com autenticação e Row Level Security para restringir o acesso a dados por utilizador. Interface em Next.js, TypeScript e Tailwind CSS.</li>
-    </ul>
+    <ul><li>Vendas, utilizadores, stock e histórico de transações, com dashboard administrativo para produtos, finanças e inventário.</li><li>Supabase com autenticação e Row Level Security para restringir o acesso a dados por utilizador. Interface em Next.js, TypeScript e Tailwind CSS.</li></ul>
   </article>
-
-  <h3 style="font-size:1.25rem;margin:2.5rem 0 .75rem">Trabalhos académicos</h3>
+  <h3 class="subheading">Trabalhos académicos</h3>
   <ul class="acad">
     <li><b>Game of Life modificado.</b> Sistema de transição de primeira ordem em SMT (pySMT), com semântica síncrona e análise experimental de desempenho. <i>Lógica Computacional</i></li>
     <li><b>Sudoku genérico.</b> Sudoku n²×n² como problema de satisfação de restrições com OR-Tools CP-SAT, com geração de pistas e validação. <i>Lógica Computacional</i></li>
@@ -213,72 +228,48 @@ h2::after{content:"";display:block;width:3rem;height:4px;background:var(--accent
     <li><b>LiveWave.</b> Plataforma de gestão de festivais de música: modelação relacional, views e interrogações SQL, relatório em LaTeX. <i>Bases de Dados</i></li>
   </ul>
 </section>
-
 <section id="experiencia">
   <h2>Experiência</h2>
   <ul class="dated">
-    <li>
-      <time>set. 2025 – out. 2026</time>
-      <div>
-        <h3>Co Diretor do Departamento de Desenvolvimento</h3>
-        <p>Núcleo de Estudantes de Ciências da Computação, Braga. Coordenação da equipa técnica, apoio nas decisões de arquitetura e planeamento dos projetos internos.</p>
-      </div>
-    </li>
-    <li>
-      <time>2025/26</time>
-      <div>
-        <h3>Clube de Capture the Flag</h3>
-        <p>Universidade do Minho. Reconhecimento e enumeração, exploração de vulnerabilidades em WordPress e escalada de privilégios.</p>
-      </div>
-    </li>
-    <li>
-      <time>set. 2024 – set. 2025</time>
-      <div>
-        <h3>Monitor de voluntários</h3>
-        <p>InPóvoa, Póvoa de Varzim. Coordenação de equipas de voluntários num projeto de inclusão social para pessoas com mobilidade reduzida.</p>
-      </div>
-    </li>
+    <li><time>set. 2025 – out. 2026</time><div><h3>Co Diretor do Departamento de Desenvolvimento</h3><p>Núcleo de Estudantes de Ciências da Computação, Braga. Coordenação da equipa técnica, apoio nas decisões de arquitetura e planeamento dos projetos internos.</p></div></li>
+    <li><time>2025/26</time><div><h3>Clube de Capture the Flag</h3><p>Universidade do Minho. Reconhecimento e enumeração, exploração de vulnerabilidades em WordPress e escalada de privilégios.</p></div></li>
+    <li><time>set. 2024 – set. 2025</time><div><h3>Monitor de voluntários</h3><p>InPóvoa, Póvoa de Varzim. Coordenação de equipas de voluntários num projeto de inclusão social para pessoas com mobilidade reduzida.</p></div></li>
   </ul>
 </section>
-
 <section id="formacao">
   <h2>Formação</h2>
   <ul class="dated">
-    <li>
-      <time>set. 2024 – presente</time>
-      <div>
-        <h3>Licenciatura em Ciências da Computação</h3>
-        <p>Universidade do Minho, Braga. Prática regular de revisão e prova de código em Haskell: leis de combinadores em estilo point-free, inferência de tipos a partir de propriedades grátis e transformação algébrica de programas para ganhar eficiência sem perder correção.</p>
-      </div>
-    </li>
-    <li>
-      <time>Línguas</time>
-      <div>
-        <h3>Português e inglês</h3>
-        <p>Português, língua materna. Inglês, nível C2 em todas as competências.</p>
-      </div>
-    </li>
+    <li><time>set. 2024 – presente</time><div><h3>Licenciatura em Ciências da Computação</h3><p>Universidade do Minho, Braga. Prática regular de revisão e prova de código em Haskell: leis de combinadores em estilo point-free, inferência de tipos a partir de propriedades grátis e transformação algébrica de programas para ganhar eficiência sem perder correção.</p></div></li>
+    <li><time>Línguas</time><div><h3>Português e inglês</h3><p>Português, língua materna. Inglês, nível C2 em todas as competências.</p></div></li>
   </ul>
 </section>
-
 </main>
-<footer>
-  <div class="wrap">Miguel Cruz · Braga, Portugal</div>
-</footer>
+<footer><div class="wrap">Miguel Cruz · Braga, Portugal</div></footer>
 <script>
 (function(){
-  var r=document.documentElement,k="tema";
-  try{var s=localStorage.getItem(k);if(s)r.dataset.theme=s}catch(e){}
-  document.getElementById("tema").addEventListener("click",function(){
-    var dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
-    var n=dark?"light":"dark";r.dataset.theme=n;
-    try{localStorage.setItem(k,n)}catch(e){}
+  var root=document.documentElement,key="tema",button=document.getElementById("tema");
+  try{var saved=localStorage.getItem(key);if(saved==="light"||saved==="dark")root.dataset.theme=saved}catch(e){}
+  button.addEventListener("click",function(){
+    var dark=root.dataset.theme?root.dataset.theme==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var next=dark?"light":"dark";root.dataset.theme=next;
+    button.setAttribute("aria-label",next==="dark"?"Alternar para tema claro":"Alternar para tema escuro");
+    try{localStorage.setItem(key,next)}catch(e){}
   });
   document.querySelectorAll(".stack").forEach(function(p){
-    var ul=document.createElement("ul");ul.className="chips";
-    p.textContent.split(/,\s*(?![^()]*\))/).forEach(function(t){var li=document.createElement("li");li.textContent=t;ul.appendChild(li)});
-    p.replaceWith(ul);
+    var list=document.createElement("ul");list.className="chips";
+    p.textContent.split(/,\s*(?![^()]*\))/).forEach(function(item){var li=document.createElement("li");li.textContent=item;list.appendChild(li)});
+    p.replaceWith(list);
   });
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlinks a"));
+  var sections=links.map(function(link){return document.querySelector(link.getAttribute("href"))}).filter(Boolean);
+  if("IntersectionObserver" in window){
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){if(entry.isIntersecting){
+        links.forEach(function(link){if(link.getAttribute("href")==="#"+entry.target.id)link.setAttribute("aria-current","location");else link.removeAttribute("aria-current")});
+      }});
+    },{rootMargin:"-20% 0px -65% 0px",threshold:0});
+    sections.forEach(function(section){observer.observe(section)});
+  }
 })();
 </script>
 </body>
